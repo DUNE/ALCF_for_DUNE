@@ -1,0 +1,1 @@
+mkdir 2x2_sim_data
