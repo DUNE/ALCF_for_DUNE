@@ -1,0 +1,3 @@
+[submodule "Balsam/2x2_production_polaris/data/2x2_sim"]
+	path = Balsam/2x2_production_polaris/data/2x2_sim
+	url = https://github.com/DUNE/2x2_sim.git
