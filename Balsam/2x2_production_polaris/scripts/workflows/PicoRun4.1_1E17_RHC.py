@@ -9,7 +9,7 @@ job_mode="mpi"          #
 #########################
 
 name = 'PicoRun4.1_1E17_RHC'
-yaml_dir = f'../specs/{name}/{name}'
+yaml_dir = f'../../specs/{name}/{name}'
 start = 0
 single_size = 100
 spill_size = 10 
