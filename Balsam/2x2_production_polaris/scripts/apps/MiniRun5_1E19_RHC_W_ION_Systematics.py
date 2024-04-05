@@ -9,7 +9,7 @@ name = 'MiniRun5_1E19_RHC_W_ION_Systematics'
 yaml_dir = f'../../specs/{name}/{name}'
 
 site_name = "2x2_production_polaris"
-path_2x2 = f"/grand/ALCF_for_DUNE/users/fathima/ALCF_for_DUNE/Balsam/{site_name}/data/2x2_sim"
+path_2x2 = f"/home/fathimamaha/{site_name}/data/2x2_sim"
 
 """
 Functions

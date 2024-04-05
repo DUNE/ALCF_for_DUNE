@@ -7,6 +7,7 @@ base_envs:
       ARCUBE_CONTAINER: 'sim2x2_ndlar011.sif'
       ARCUBE_CONVERT2H5_NAME: 'MiniRun5_1E19_RHC.convert2h5'
       ARCUBE_LARNDSIM_CONFIG: '2x2_mod2mod_variation'
-      ARCUBE_DIR: '/grand/ALCF_for_DUNE/users/fathima/ALCF_for_DUNE/Balsam/2x2_production_polaris/data/2x2_sim'
-      ARCUBE_CONTAINER_DIR: '/grand/ALCF_for_DUNE/users/fathima/ALCF_for_DUNE/Balsam/2x2_production_polaris/data/2x2_sim_data/containers'
-      ARCUBE_USE_LOCAL_PRODUCT: 1
+      ARCUBE_DIR: '/home/fathimamaha/2x2_production_polaris/data/2x2_sim'
+      ARCUBE_CONTAINER_DIR: '/grand/ALCF_for_DUNE/users/fathima/2x2_sim_data/containers'
+      ARCUBE_USE_LOCAL_PRODUCT: '1'
+      ARCUBE_OUT_NAME: 'MiniRun5_Systematics_W_ION_22.7.larnd'
