@@ -15,9 +15,9 @@ Node hours used: 657.6
 
 | Stage          | Total jobs run | Completed jobs | Failed jobs |
 |----------------|----------------|----------------|-------------|
-| run-larnd-sim  | 1024           | 871            | 153         |
-| run-ndlar-flow | 871            | 870            | 1           |
-| run-validation | 870            | 870            | 0           | 
+| run-larnd-sim  | 1024           | 894            | 130         |
+| run-ndlar-flow | 894            | 893            | 1           |
+| run-validation | 893            | 893            | 0           | 
 
 
 > larnd-sim error log for all failed jobs:
