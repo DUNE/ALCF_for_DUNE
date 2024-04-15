@@ -1,47 +1,26 @@
-larnd-sim physics constant Wion set to 22.7eV before pip install of larnd-sim for 2x2_sim.
+#### **Output file locations**
+  
+Output: `/pnfs/dune/persistent/users/fmaha/productions/MiniRun5_Systematics_W_ION_22.7`    
+Logs: `/pnfs/dune/persistent/users/fmaha/productions/MiniRun5_Systematics_W_ION_22.7/logs`
 
-***Output file locations***
+#### **Versioning**
+2x2_sim: `MiniRun5-beta1`     
+larnd-sim: `MiniRun5-beta1`     
+ndlar-flow: `MiniRun5-beta1`     
 
-larnd-sim
-Output: 
-Logs:
-ndlar-flow
-Output:
-Logs:
-Validation Plots
-Output:
-Logs:
+#### **Production Job Status Report**
 
-Versioning:
-2x2_sim: `MiniRun5-beta1`   
-larnd-sim: `MiniRun5-beta1`   
-ndlar-flow: `MiniRun5-beta1`   
+Machine: ALCF Polaris   
+Node hours used: 657.6    
 
-Production Job status report:
-
-Machine: ALCF Polaris
-Node hours used: 657.6
+| Stage          | Total jobs run | Completed jobs | Failed jobs |
+|----------------|----------------|----------------|-------------|
+| run-larnd-sim  | 1024           | 871            | 153         |
+| run-ndlar-flow | 871            | 870            | 1           |
+| run-validation | 870            | 870            | 0           | 
 
 
-Stage
-Total jobs run
-Completed jobs
-Failed jobs
-run-larnd-sim
-1024
-871
-153
-run-ndlar-flow
-871
-870
-1
-run-validation
-870
-870
-0
-
-
-larnd-sim error log for all failed jobs:
+> larnd-sim error log for all failed jobs:
 ```
   Simulating event 9124 batches...: 100%|█████████| 1/1 [00:01<00:00,  1.20s/it][A
 
@@ -81,8 +60,7 @@ Traceback (most recent call last):
 cupy.cuda.memory.OutOfMemoryError: Out of memory allocating 675,840,000 bytes (allocated so far: 28,275,322,880 bytes).
 ```
 
-
-ndlar-flow error log for failed job:
+> ndlar-flow error log for failed job:
 ```
 ~~~ INIT ~~~
 create RunData() /lus/grand/projects/ALCF_for_DUNE/users/fathima/productions/out.MiniRun5_Systematics_W_ION_22.7/run-larnd-sim/MiniRun5_Systematics_W_ION_22.7.larnd/LARNDSIM/0000000/MiniRun5_Systematics_W_ION_22.7.larnd.0000074.LARNDSIM.hdf5
@@ -110,9 +88,8 @@ Traceback (most recent call last):
 KeyError: "Unable to synchronously open object (object 'segments' doesn't exist)"
 ```
 
+#### All job statuses
 
-
-All job statuses:
 |ARCUBE_INDEX|run-larnd-sim|run-ndlar-flow  |run-validation  |error log                                |
 |------------|-------------|----------------|----------------|-----------------------------------------|
 |0           |JOB_FINISHED |JOB_FINISHED    |JOB_FINISHED    |                                         |
