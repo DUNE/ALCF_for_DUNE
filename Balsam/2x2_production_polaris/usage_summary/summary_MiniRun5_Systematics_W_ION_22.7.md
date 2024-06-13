@@ -18,7 +18,7 @@ Node hours used: 657.6
 | run-larnd-sim  | 1024           | 894            | 130         |
 | run-ndlar-flow | 894            | 893            | 1           |
 | run-validation | 893            | 893            | 0           | 
-
+| run-validation | 891            | 891            | 2           | 
 
 > larnd-sim error log for all failed jobs:
 ```
