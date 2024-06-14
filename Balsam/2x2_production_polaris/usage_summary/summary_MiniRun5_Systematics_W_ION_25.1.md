@@ -18,6 +18,7 @@ Node hours used:
 | run-larnd-sim  | 1024           | 894            | 130         |
 | run-ndlar-flow | 894            | 893            | 1           |
 | run-validation | 893            | 893            | 0           | 
+| run-mlreco     | 891            | 891            | 2           | 
 
 #### All job statuses
 
