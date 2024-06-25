@@ -19,32 +19,29 @@ job_mode="mpi"          #
 
 #default prod
 cpu_packing_count = 1
-#need to experiment with this as we have 1024 jobs
 gpu_packing_count = 1
 
-if queue == "debug":
-    cpu_packing_count = 1
-
-name = 'MiniRun5_1E19_RHC_W_ION_Systematics'
+name = 'MiniRun5_1E19_RHC_W_ION_Systematics_mlreco_v1'
 
 site_name = "2x2_production_polaris"
 
-runs = ["all","submit_all_cpu"]
+runs = ["submit_all_cpu"]
 
 #v0 wion = 22.7
 #v1 wion = 25.1
 
-version = "v1"
+version = "v3"
 
 """
 Functions
 """
 
-# begin_index = 0
-# spill_size = 128
-# end_index = 1024
-# wall_time_min = 60
-# num_nodes = 128
+
+begin_index = 1
+spill_size = 128
+end_index = 2
+wall_time_min = 60
+num_nodes = 1
 
 
 def create_jobs(app_id, size, node_packing_count):
@@ -85,6 +82,7 @@ def submit_all_jobs(num_nodes=1, wall_time_min = 60):
 
     site = Site.objects.get(site_name)
 
+    # for start in range(begin_index, end_index, 128):
     for start in range(begin_index, end_index, 128):
         BatchJob.objects.create(
             num_nodes=num_nodes,
@@ -92,11 +90,12 @@ def submit_all_jobs(num_nodes=1, wall_time_min = 60):
             queue=queue,
             project=project,
             site_id=site.id,
-            filter_tags={"job_start": f"{start}"},
+            filter_tags={"workflow": "MiniRun5_1E19_RHC_W_ION_Systematics_mlreco_v1_analysis_v1_v3"},
+            # filter_tags={"job_start":f"{start}"},
             job_mode=job_mode
         )
 
-if "larnd" in runs or "all" in runs:
+if "flow2supera" in runs or "all" in runs:
 
     site = Site.objects.get(site_name)
 
@@ -109,18 +108,35 @@ if "larnd" in runs or "all" in runs:
     parent_job_ids = []
 
     #GPU memory exceed error for larnd single run therefore node packing = 1
-    for start in range(begin_index, end_index, 128):
+    for start in range(begin_index, end_index, spill_size):
         for i in range(start, start+spill_size):
             if i < end_index:
-                create_single_dependent_job("larnd", i, parent_job_ids, gpu_packing_count, start)
+                create_single_dependent_job("flow2supera_v1", i, parent_job_ids, gpu_packing_count, start)
 
-    print("larnd jobs created")
+    print("flow2supera jobs created")
 
 # if "submit_all_gpu" in runs:
 #     # submit_all_jobs(num_nodes = spill_size//cpu_packing_count)
 #     submit_all_jobs(num_nodes = min(spill_size, max_nodes), wall_time_min=360)
 
-if "flow" in runs or "all" in runs:
+if "inference" in runs or "all" in runs:
+
+    site = Site.objects.get(site_name)
+
+    #node packing
+    for start in range(begin_index, end_index, 128):
+        for i in range(start, start+spill_size):
+            if i < end_index:
+                # parent_job_ids = [job.id for job in Job.objects.filter(
+                # site_id=site.id, 
+                # tags={"workflow": f"{name}_flow2supera_{version}", "index":f"{i}"},
+                # )]
+                parent_job_ids = []
+                create_single_dependent_job("inference_v1", i, parent_job_ids, cpu_packing_count, start)
+
+    print("inference jobs created")
+
+if "analysis" in runs or "all" in runs:
 
     site = Site.objects.get(site_name)
 
@@ -130,27 +146,11 @@ if "flow" in runs or "all" in runs:
             if i < end_index:
                 parent_job_ids = [job.id for job in Job.objects.filter(
                 site_id=site.id, 
-                tags={"workflow": f"{name}_larnd_{version}", "index":f"{i}"},
+                tags={"workflow": f"{name}_inference_{version}", "index":f"{i}"},
                 )]
-                create_single_dependent_job("flow", i, parent_job_ids, cpu_packing_count, start)
-
-    print("flow jobs created")
-
-if "plot" in runs or "all" in runs:
-
-    site = Site.objects.get(site_name)
-
-    #node packing
-    for start in range(begin_index, end_index, 128):
-        for i in range(start, start+spill_size):
-            if i < end_index:
-                parent_job_ids = [job.id for job in Job.objects.filter(
-                site_id=site.id, 
-                tags={"workflow": f"{name}_flow_{version}", "index":f"{i}"},
-                )]
-                create_single_dependent_job("plot", i, parent_job_ids, cpu_packing_count, start)
+                create_single_dependent_job("analysis_v1", i, parent_job_ids, cpu_packing_count, start)
             
-    print("Plot jobs created")
+    print("analysis jobs created")
 
 #submit cpu jobs
 if "submit_all_cpu" in runs:

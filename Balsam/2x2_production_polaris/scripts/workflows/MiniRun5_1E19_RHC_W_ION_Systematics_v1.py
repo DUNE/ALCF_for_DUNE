@@ -3,7 +3,7 @@ import yaml
 
 #Machine variables
 #########################
-queue = "debug"          #
+queue = "prod"          #
 project="ALCF_for_DUNE" #
 job_mode="mpi"          #
 #########################
@@ -25,16 +25,16 @@ gpu_packing_count = 1
 if queue == "debug":
     cpu_packing_count = 1
 
-name = 'MiniRun5_1E19_RHC_W_ION_Systematics'
+name = 'MiniRun5_1E19_RHC_W_ION_Systematics_v1'
 
 site_name = "2x2_production_polaris"
 
-runs = ["all","submit_all_cpu"]
+runs = ["inference","analysis","submit_all_cpu"]
 
 #v0 wion = 22.7
 #v1 wion = 25.1
 
-version = "v1"
+version = "v3"
 
 """
 Functions
@@ -46,6 +46,11 @@ Functions
 # wall_time_min = 60
 # num_nodes = 128
 
+begin_index = 0
+spill_size = 128
+end_index = 1024
+wall_time_min = 60
+num_nodes = 128
 
 def create_jobs(app_id, size, node_packing_count):
 
@@ -54,7 +59,7 @@ def create_jobs(app_id, size, node_packing_count):
                             site_name=site_name,
                             workdir=f"workdir/{version}_{i}_{app_id}",
                             node_packing_count=node_packing_count,
-                            tags={"workflow": f"{name}_{app_id}_{version}", "index":f"{i}"},
+                            tags={"workflow": f"{name}_{app_id}", "index":f"{i}"},
                             data={"i": i})
 
 def create_single_dependent_job(app_id, i, parent_ids, node_packing_count, start):
@@ -63,7 +68,7 @@ def create_single_dependent_job(app_id, i, parent_ids, node_packing_count, start
                         site_name=site_name,
                         workdir=f"workdir/{version}_{i}_{app_id}",
                         node_packing_count=node_packing_count,
-                        tags={"workflow": f"{name}_{app_id}_{version}", "index":f"{i}", "job_start":f"{start}"},
+                        tags={"workflow": f"{name}_{app_id}", "index":f"{i}", "job_start":f"{start}"},
                         data={"i": i},
                         parent_ids=parent_ids)
 
@@ -77,7 +82,7 @@ def submit_filtered_jobs(app_id, num_nodes=1, wall_time_min = 60):
         queue=queue,
         project=project,
         site_id=site.id,
-        filter_tags={"workflow": f"{name}_{app_id}_{version}"},
+        filter_tags={"workflow": f"{name}_{app_id}"},
         job_mode=job_mode
     )
 
@@ -85,7 +90,7 @@ def submit_all_jobs(num_nodes=1, wall_time_min = 60):
 
     site = Site.objects.get(site_name)
 
-    for start in range(begin_index, end_index, 128):
+    for start in range(begin_index, end_index, spill_size):
         BatchJob.objects.create(
             num_nodes=num_nodes,
             wall_time_min=wall_time_min,
@@ -109,10 +114,10 @@ if "larnd" in runs or "all" in runs:
     parent_job_ids = []
 
     #GPU memory exceed error for larnd single run therefore node packing = 1
-    for start in range(begin_index, end_index, 128):
+    for start in range(begin_index, end_index, spill_size):
         for i in range(start, start+spill_size):
             if i < end_index:
-                create_single_dependent_job("larnd", i, parent_job_ids, gpu_packing_count, start)
+                create_single_dependent_job("larnd_v1", i, parent_job_ids, gpu_packing_count, start)
 
     print("larnd jobs created")
 
@@ -125,14 +130,14 @@ if "flow" in runs or "all" in runs:
     site = Site.objects.get(site_name)
 
     #node packing
-    for start in range(begin_index, end_index, 128):
+    for start in range(begin_index, end_index, spill_size):
         for i in range(start, start+spill_size):
             if i < end_index:
                 parent_job_ids = [job.id for job in Job.objects.filter(
                 site_id=site.id, 
-                tags={"workflow": f"{name}_larnd_{version}", "index":f"{i}"},
+                tags={"workflow": f"{name}_larnd_v1", "index":f"{i}"},
                 )]
-                create_single_dependent_job("flow", i, parent_job_ids, cpu_packing_count, start)
+                create_single_dependent_job("flow_v1", i, parent_job_ids, cpu_packing_count, start)
 
     print("flow jobs created")
 
@@ -141,14 +146,14 @@ if "plot" in runs or "all" in runs:
     site = Site.objects.get(site_name)
 
     #node packing
-    for start in range(begin_index, end_index, 128):
+    for start in range(begin_index, end_index, spill_size):
         for i in range(start, start+spill_size):
             if i < end_index:
                 parent_job_ids = [job.id for job in Job.objects.filter(
                 site_id=site.id, 
-                tags={"workflow": f"{name}_flow_{version}", "index":f"{i}"},
+                tags={"workflow": f"{name}_flow_v1", "index":f"{i}"},
                 )]
-                create_single_dependent_job("plot", i, parent_job_ids, cpu_packing_count, start)
+                create_single_dependent_job("plot_v1", i, parent_job_ids, cpu_packing_count, start)
             
     print("Plot jobs created")
 

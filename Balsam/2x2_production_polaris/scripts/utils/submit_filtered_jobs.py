@@ -1,14 +1,14 @@
 site_name = "2x2_production_polaris"
 name = "MiniRun5_1E19_RHC_W_ION_Systematics"
-app_id = "larnd"
+app_id = "flow"
 version = "v0"
-queue= "debug"
+queue= "prod"
 project = "ALCF_for_DUNE"
 
 
 from balsam.api import Job, BatchJob, Site
 
-def submit_filtered_jobs(app_id, num_nodes=1, wall_time_min = 60):
+def submit_filtered_jobs(app_id, num_nodes=128, wall_time_min = 30):
 
     site = Site.objects.get(site_name)
 
@@ -18,7 +18,7 @@ def submit_filtered_jobs(app_id, num_nodes=1, wall_time_min = 60):
         queue=queue,
         project=project,
         site_id=site.id,
-        filter_tags={"workflow": f"{name}_{app_id}_{version}"},
+        filter_tags={"workflow": "MiniRun5_1E19_RHC_W_ION_Systematics_plot_v0","job_start":"16"},
         job_mode="mpi"
     )
 

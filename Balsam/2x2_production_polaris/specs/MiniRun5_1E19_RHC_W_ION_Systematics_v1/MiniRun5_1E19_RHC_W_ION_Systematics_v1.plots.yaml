@@ -1,0 +1,13 @@
+base_envs:
+  - name: 'MiniRun5_1E19_RHC_W_ION_Systematics_v1.plots'
+    env:
+      ARCUBE_OUTDIR_BASE: '/grand/ALCF_for_DUNE/users/fathima/productions/out.MiniRun5_Systematics_W_ION_25.1'
+      ARCUBE_LOGDIR_BASE: '/grand/ALCF_for_DUNE/users/fathima/productions/logs_cmd.MiniRun5_Systematics_W_ION_25.1'
+      ARCUBE_RUNTIME: 'SINGULARITY'
+      ARCUBE_CONTAINER: 'sim2x2_ndlar011.sif'
+      ARCUBE_EDEP_NAME: 'MiniRun5_1E19_RHC.convert2h5'
+      ARCUBE_LARND_NAME: 'MiniRun5_Systematics_W_ION_25.1.larnd'
+      ARCUBE_FLOW_NAME: 'MiniRun5_Systematics_W_ION_25.1.flow'
+      ARCUBE_OUT_NAME: 'MiniRun5_Systematics_W_ION_25.1.plots'
+      ARCUBE_DIR: '/home/fathimamaha/2x2_production_polaris/data/v1_2x2_sim'
+      ARCUBE_CONTAINER_DIR: '/grand/ALCF_for_DUNE/users/fathima/2x2_sim_data/containers'

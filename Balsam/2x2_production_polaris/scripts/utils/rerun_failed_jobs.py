@@ -1,6 +1,6 @@
 from balsam.api import Job, BatchJob, Site
 
-Job.objects.filter(state="FAILED").update(state="RESTART_READY")
+Job.objects.filter(state="AWAITING_PARENTS", tags={'MiniRun5_1E19_RHC_W_ION_Systematics_flow_v0'}).update(state="RESTART_READY")
 
 # name = "PicoRun4.1_1E17_RHC"
 # app_id = "spill"
