@@ -3,7 +3,7 @@
 Dated: 2 Aug 2024 (Depending upon the machine software updates, some instructions might be obsolete later)
 
 File modifications:
-- Replacing loading singularity:
+- Replacing loading singularity:   
   Old:
   ```
   module load singularity
@@ -14,7 +14,7 @@ File modifications:
   module load spack-pe-base
   module load apptainer
   ```
--Replacing loading Python
+-Replacing loading Python   
   Old:
   ```
   module load python/3.11
@@ -25,7 +25,7 @@ File modifications:
   module load conda
   conda activate
   ```
--Replacing loading Cuda
+-Replacing loading Cuda    
   Old:
   ```
   module load cudatoolkit/11.7
@@ -34,7 +34,7 @@ File modifications:
   ```
   module load cudatoolkit-standalone/11.8.0
   ```
--Changes to loading singularity
+-Changes to loading singularity    
   In the file `util/reload_in_container.inc.sh`, make the container aware of external folders
   Old:
   ```
