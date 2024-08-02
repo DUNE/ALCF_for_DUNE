@@ -1,6 +1,6 @@
 ## Running 2x2_sim on ALCF Polaris
 
-Dated: 2 Aug 2024 (Depending upon the machine software updates, some instructions might be obsolete later)
+Dated: 2 Aug 2024 (Depending upon the machine software updates, some instructions might be obsolete later. Please edit this doc if you notice something changes on Polaris)
 
 File modifications:
 - Replacing loading singularity:   
