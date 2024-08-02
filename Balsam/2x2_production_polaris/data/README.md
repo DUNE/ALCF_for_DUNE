@@ -14,7 +14,7 @@ File modifications:
   module load spack-pe-base
   module load apptainer
   ```
--Replacing loading Python   
+- Replacing loading Python   
   Old:
   ```
   module load python/3.11
@@ -34,7 +34,7 @@ File modifications:
   ```
   module load cudatoolkit-standalone/11.8.0
   ```
--Changes to loading singularity    
+- Changes to loading singularity    
   In the file `util/reload_in_container.inc.sh`, make the container aware of external folders
   Old:
   ```
