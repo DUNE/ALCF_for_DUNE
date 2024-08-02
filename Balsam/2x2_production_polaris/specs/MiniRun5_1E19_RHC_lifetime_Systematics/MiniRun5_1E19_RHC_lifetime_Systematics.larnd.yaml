@@ -1,0 +1,13 @@
+base_envs:
+  - name: 'MiniRun5_1E19_RHC_lifetime_Systematics.larnd'
+    env:
+      ARCUBE_OUTDIR_BASE: '/grand/ALCF_for_DUNE/users/fathima/productions/out.MiniRun5_Systematics_lifetime_0.2'
+      ARCUBE_LOGDIR_BASE: '/grand/ALCF_for_DUNE/users/fathima/productions/logs_cmd.MiniRun5_Systematics_lifetime_0.2'
+      ARCUBE_RUNTIME: 'SINGULARITY'
+      ARCUBE_CONTAINER: 'sim2x2_ndlar011.sif'
+      ARCUBE_CONVERT2H5_NAME: 'MiniRun5_1E19_RHC.convert2h5'
+      ARCUBE_LARNDSIM_CONFIG: '2x2_mod2mod_variation_old_response'
+      ARCUBE_DIR: '/home/fathimamaha/2x2_production_polaris/data/2x2_sim'
+      ARCUBE_CONTAINER_DIR: '/grand/ALCF_for_DUNE/users/fathima/2x2_sim_data/containers'
+      ARCUBE_USE_LOCAL_PRODUCT: '1'
+      ARCUBE_OUT_NAME: 'MiniRun5_Systematics_lifetime_0.2.larnd'

@@ -7,7 +7,7 @@ from balsam.api import Job, BatchJob, Site
 # print(len(jobs))
 # jobs.filter(state="FAILED").update(state='AWAITING_PARENTS')
 
-jobs = Job.objects.filter(tags={'workflow':'MiniRun5_1E19_RHC_W_ION_Systematics_mlreco_analysis_v2'})
-print(len(jobs))
+# jobs = Job.objects.filter(tags={'workflow':'MiniRun5_1E19_RHC_W_ION_Systematics_mlreco_analysis_v2'})
+# print(len(jobs))
 # jobs.filter(state="FAILED").update(state='AWAITING_PARENTS')
-Job.objects.filter(tags={'workflow':'MiniRun5_1E19_RHC_W_ION_Systematics_mlreco_analysis_v2'}).filter(state="FAILED").update(state="RESTART_READY")
+Job.objects.filter(tags={'workflow':'MiniRun5_1E19_RHC_lifetime_Systematics_flow_v0'}).filter(state="FAILED").update(state="RESTART_READY")

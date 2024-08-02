@@ -29,7 +29,7 @@ name = 'MiniRun5_1E19_RHC_lifetime_Systematics'
 
 site_name = "2x2_production_polaris"
 
-runs = ["all","submit_all_cpu"]
+runs = ["submit_all_cpu"]
 
 #v0 wion = 22.7
 #v1 wion = 25.1
@@ -40,7 +40,7 @@ version = "v0"
 Functions
 """
 
-begin_index = 0
+begin_index = 128
 spill_size = 128
 end_index = 1024
 wall_time_min = 60

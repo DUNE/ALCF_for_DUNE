@@ -5,7 +5,7 @@ import yaml
 MiniRun5 1E19 Systematics
 '''
 
-name = 'MiniRun5_1E19_RHC_W_ION_Systematics'
+name = 'MiniRun5_1E19_RHC_lifetime_Systematics'
 yaml_dir = f'../../specs/{name}/{name}'
 
 site_name = "2x2_production_polaris"
@@ -44,7 +44,9 @@ class larnd(ApplicationDefinition):
     def shell_preamble(self):
         return f'''
         export ARCUBE_INDEX={self.job.data["i"]}
-        module load singularity
+        module use /soft/modulefiles
+        module load spack-pe-base
+        module load apptainer
         cd {path_2x2}/run-larnd-sim
         '''
 
@@ -70,7 +72,9 @@ class flow(ApplicationDefinition):
     def shell_preamble(self):
         return f'''
         export ARCUBE_INDEX={self.job.data["i"]}
-        module load singularity
+        module use /soft/modulefiles
+        module load spack-pe-base
+        module load apptainer
         cd {path_2x2}/run-ndlar-flow
         '''
 
@@ -96,7 +100,9 @@ class plot(ApplicationDefinition):
     def shell_preamble(self):
         return f'''
         export ARCUBE_INDEX={self.job.data["i"]}
-        module load singularity
+        module use /soft/modulefiles
+        module load spack-pe-base
+        module load apptainer
         cd {path_2x2}/run-validation
         '''
 
