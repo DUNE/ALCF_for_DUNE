@@ -25,7 +25,7 @@ File modifications:
   module load conda
   conda activate
   ```
--Replacing loading Cuda    
+- Replacing loading Cuda    
   Old:
   ```
   module load cudatoolkit/11.7
