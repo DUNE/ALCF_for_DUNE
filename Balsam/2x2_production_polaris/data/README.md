@@ -35,7 +35,7 @@ File modifications:
   module load cudatoolkit-standalone/11.8.0
   ```
 - Changes to loading singularity    
-  In the file `util/reload_in_container.inc.sh`, make the container aware of external folders
+  In the file `util/reload_in_container.inc.sh`, make the container aware of external folders.   
   Old:
   ```
   singularity exec -B $ARCUBE_DIR $ARCUBE_CONTAINER_DIR/$ARCUBE_CONTAINER /bin/bash "$0" "$@"
