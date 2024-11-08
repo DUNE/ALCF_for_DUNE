@@ -17,7 +17,10 @@ In the directory `Balsam/2x2_production_polaris` you will find the following fol
 Additional information is available in each directory.
 
 Some useful web pages:
-2x2 sim Github: https://github.com/DUNE/2x2_sim
-NERSC portal for various files with production tags: https://portal.nersc.gov/project/dune/data/2x2
-DUNE larndsim: https://github.com/DUNE/larnd-sim
-For NERSC workflows: https://github.com/lbl-neutrino/fireworks4dune/tree/main
+2x2 sim Github: https://github.com/DUNE/2x2_sim.
+
+NERSC portal for various files with production tags: https://portal.nersc.gov/project/dune/data/2x2.
+
+DUNE larndsim: https://github.com/DUNE/larnd-sim.
+
+For NERSC workflows: https://github.com/lbl-neutrino/fireworks4dune/tree/main.
