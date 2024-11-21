@@ -26,6 +26,8 @@ Balsam user guide: https://balsam.readthedocs.io/en/latest/.
 
 Balsam Github: https://github.com/argonne-lcf/balsam/tree/main.
 
+Snowstorm files and details: https://github.com/DUNE/2x2_sim/wiki/Snowstorm-Files-&-Details. 
+
 2x2 sim Github: https://github.com/DUNE/2x2_sim.
 
 NERSC portal for various files with production tags: https://portal.nersc.gov/project/dune/data/2x2.
