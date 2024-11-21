@@ -17,10 +17,13 @@ In the directory `Balsam/2x2_production_polaris` you will find the following fol
 Additional information is available in each directory.
 
 Some useful web pages:
+Polaris activity for jobs: https://status.alcf.anl.gov/#/polaris
 2x2 sim Github: https://github.com/DUNE/2x2_sim.
 
 NERSC portal for various files with production tags: https://portal.nersc.gov/project/dune/data/2x2.
 
 DUNE larndsim: https://github.com/DUNE/larnd-sim.
+DUNE ND CAFMaker: https://github.com/DUNE/ND_CAFMaker/tree/main. 
+DUNE standard Record: https://dune.github.io/duneanaobj/classcaf_1_1SRInteraction.html
 
 For NERSC workflows: https://github.com/lbl-neutrino/fireworks4dune/tree/main.
